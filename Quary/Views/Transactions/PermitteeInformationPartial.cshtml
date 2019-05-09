@@ -1,0 +1,56 @@
+﻿@model Permittees
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="PermitteeInformationHeading">
+        <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#PermitteeInformation" aria-expanded="true" aria-controls="PermitteeInformation">
+                Permittee Information's
+            </a>
+        </h4>
+    </div>
+    <div id="PermitteeInformation" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="PermitteeInformationHeading">
+        <div class="panel-body">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <table width="100%" class="c-tables">
+                        <tbody>
+                            <tr>
+                                <td width="10%">@Html.DevExpress().Label(settings => { settings.Text = "Name"; }).GetHtml()</td>
+                                <td>
+                                    @Html.DevExpress().TextBoxFor(m=>m.Name,settings =>
+                                    {
+                                        settings.Properties.NullText = "Name";
+                                    }).GetHtml()
+                                </td>
+                            </tr>
+                        <tr>
+                            <td width="10%">@Html.DevExpress().Label(settings => { settings.Text = "Contact"; }).GetHtml()</td>
+                            <td>
+                                @Html.DevExpress().TextBoxFor(m=>m.Contact,settings =>
+                                {
+                                    settings.Properties.NullText = "Contact";
+                                }).GetHtml()
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="10%">@Html.DevExpress().Label(settings => { settings.Text = "Address"; }).GetHtml()</td>
+                            <td>
+                                @Html.DevExpress().TextBoxFor(m=>m.Address,settings =>
+                                {
+                                    settings.Properties.NullText = "Address";
+                                }).GetHtml()
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

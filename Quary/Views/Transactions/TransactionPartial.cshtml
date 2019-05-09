@@ -1,0 +1,87 @@
+﻿
+@model Permittees
+
+
+
+<div class="row margin-top-10">
+    <div class="col-lg-4">
+        <div class="small-box @(Model.GetRegisterClass())">
+            <div class="inner">
+                <h3>Register</h3>
+
+                <p>Permittee</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-registered"></i>
+            </div>
+            <a onclick="registerPermittee('RegisterPermitteePartial')" href="#" class="small-box-footer permittee-link">Register Permittee  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4">
+        <div class="small-box  @(Model.GetHasTransactionClass()) ">
+            <div class="inner">
+                <h3>Renew</h3>
+
+                <p>Permittee</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-refresh "></i>
+            </div>
+            <a href="#" onclick="renewPermittee('RenewPermitteePartial','@(Model?.Id)')" class="small-box-footer permittee-link">Renew Permittee  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="small-box  @(Model.GetHasTransactionClass()) ">
+            <div class="inner">
+                <h3>Add</h3>
+
+                <p>Accredited</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-plus-circle "></i>
+            </div>
+            <a href="#" class="small-box-footer permittee-link">Add Accredited <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row margin-top-10">
+    <div class="col-lg-4">
+        <div class="small-box  @(Model.GetHasTransactionClass()) ">
+            <div class="inner">
+                <h3>SAG</h3>
+
+                <p>Advance Payment</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-money"></i>
+            </div>
+            <a onclick="addSAGAdvancePayment()" href="#" class="small-box-footer">SAG Advance Payment  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4">
+        <div class="small-box  @(Model.GetHasTransactionClass()) ">
+            <div class="inner">
+                <h3>View</h3>
+
+                <p>Transaction</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-file-excel-o "></i>
+            </div>
+            <a href="#" onclick="viewTransaction()" class="small-box-footer permittee-link">View Transaction <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.disable-link .permittee-link').removeAttr('onclick');
+    });
+</script>

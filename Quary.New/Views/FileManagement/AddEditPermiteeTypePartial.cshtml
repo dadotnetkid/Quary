@@ -1,0 +1,37 @@
+﻿@model PermiteeTypes
+<div class="row">
+    <div class="col-md-4 col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.PermiteeTypeName, settings =>
+            {
+                settings.Properties.NullText = "Permitee Type Name";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.Caption = "Permitee Type Name";
+                settings.ShowModelErrors = true;
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+            }).GetHtml();
+        }
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-12 col-md-12 ">
+        @{
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnSubmit";
+                settings.Text = "Submit";
+                settings.ClientSideEvents.Click = "function(s,e){PermiteeTypeGridView.UpdateEdit()}";
+            }).GetHtml();
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnCancel";
+                settings.Text = "Cancel";
+                settings.ControlStyle.CssClass = "margin-left-10";
+                settings.ClientSideEvents.Click = "function(s,e){PermiteeTypeGridView.CancelEdit()}";
+            }).GetHtml();
+        }
+    </div>
+</div>
+

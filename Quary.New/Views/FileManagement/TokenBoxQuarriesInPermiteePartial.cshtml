@@ -1,0 +1,24 @@
+﻿@{
+    Html.DevExpress().TokenBox(settings =>
+    {
+        settings.CallbackRouteValues = new { Controller = "FileManager", Action = "TokenBoxQuarriesInPermiteePartial", PermiteeId = ViewBag.PermiteeId };
+        settings.Name = "QuarrySites";
+        settings.Width = Unit.Percentage(100);
+        settings.Properties.TextField = "QuarryName";
+        settings.Properties.ValueField = "Id";
+        settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+        settings.Properties.Caption = "Quarries";
+        settings.ShowModelErrors = true;
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+        settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+        settings.PreRender = (s, e) =>
+        {
+            ASPxTokenBox tb = (ASPxTokenBox)s;
+            if (ViewBag.PermiteesQuarry != null)
+                foreach (var i in (List<Quarries>)ViewBag.PermiteesQuarry)
+                {
+                    tb.Tokens.Add(i.QuarryName);
+                }
+        };
+    }).BindList(Model).GetHtml();
+}

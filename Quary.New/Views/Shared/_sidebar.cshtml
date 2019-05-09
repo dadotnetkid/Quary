@@ -1,0 +1,67 @@
+﻿@using Quary.New.Controllers
+
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(HomeController.Index) && ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
+                <a href="@Url.Action("Index", "Home")"><i class="icon icon-gauge"></i> <span>Dash Board</span></a>
+
+
+            <li class="@("treeview " + (ViewContext.RouteData.Values["Controller"].ToString() == "transactions" ? "active" : ""))">
+                <a href="">
+                    <i class="fa fa-book"></i> <span>Transactions</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(TransactionsController.Index) && ViewContext.RouteData.Values["Controller"].ToString() == "transactions" ? "active" : "")">
+                        <a href="@Url.Action("Index", "transactions")"><i class="fa fa-list"></i> <span>Transactions List</span></a>
+                </ul>
+            </li>
+
+            <li class="@("treeview " + (ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : ""))">
+                <a href="">
+                    <i class="fa fa-file"></i> <span>File Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(FileManagementController.TransactionItems).ToLower() && ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : "")">
+                        <a href="@Url.Action("transactionitems", "filemanagement")"><i class="fa fa-archive"></i> <span>Transaction Items</span></a>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(FileManagementController.Permitees).ToLower() && ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : "")">
+                        <a href="@Url.Action("permitees", "filemanagement")"><i class="fa fa-user"></i> <span>Permitees</span></a>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(FileManagementController.PermiteeTypes).ToLower() && ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : "")">
+                        <a href="@Url.Action("permiteetypes", "filemanagement")"><i class="fa fa-clipboard"></i> <span>Permitee Types</span></a>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(FileManagementController.Vehicles).ToLower() && ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : "")">
+                    <a href="@Url.Action("vehicles", "filemanagement")"><i class="fa fa-truck"></i> <span>Vehicles</span></a>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(FileManagementController.VehicleTypes).ToLower() && ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : "")">
+                    <a href="@Url.Action("vehicletypes", "filemanagement")"><i class="fa fa-truck"></i> <span>Vehicle Types</span></a>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(FileManagementController.Facilities).ToLower() && ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : "")">
+                        <a href="@Url.Action("facilities", "filemanagement")"><i class="fa fa-building-o"></i> <span>Facilities</span></a>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(FileManagementController.Quarries).ToLower() && ViewContext.RouteData.Values["Controller"].ToString() == "filemanagement" ? "active" : "")">
+                        <a href="@Url.Action("quarries", "filemanagement")"><i class="fa fa-map-signs"></i> <span>Quarries</span></a>
+                </ul>
+            </li>
+
+            <li class="@("treeview " + (ViewContext.RouteData.Values["Controller"].ToString() == "reports" ? "active" : ""))">
+                <a href="">
+                    <i class="fa fa-print"></i> <span>Reports</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == nameof(ReportsController.Index) && ViewContext.RouteData.Values["Controller"].ToString() == "reports" ? "active" : "")">
+                        <a href="@Url.Action("index", "reports")"><i class="fa fa-list-ol"></i> <span>Reports List</span></a>
+                </ul>
+            </li>
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,422 @@
+﻿@model Transactions
+
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="headingTwo">
+    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Governor's Accreditation Fees
+        </a>
+    </h4>
+</div>
+
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table width="100%" class="c-tables">
+                        <tbody>
+                            <tr>
+                                <td width="30%">@Html.DevExpress().Label(settings => { settings.Text = "a. Sticker(@Php 50.00/unit)"; }).GetHtml()</td>
+                                <td>
+                                    @Html.DevExpress().TextBoxFor(m=>m.Sticker,settings =>
+                               {
+                                   settings.Name = "StickerUnit";
+                                   settings.Enabled = false;
+                                   settings.Properties.NullText = "0";
+                               }).GetHtml()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30%">@Html.DevExpress().Label(settings => { settings.Text = "b. Filing Fee for Application of Governor's Accreditation"; }).GetHtml()</td>
+                                <td>
+                                    @Html.DevExpress().TextBox(settings =>
+                                    {
+                                        settings.Name = "GovernorsAccreditaion";
+                                        settings.Enabled = false;
+                                    }).GetHtml()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30%">@Html.DevExpress().Label(settings => { settings.Text = "c. Governor's Accreditation Fees(renewable yearly per unit)"; }).GetHtml()</td>
+
+
+                            </tr>
+                            <tr>
+                                <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings => { settings.Text = "1. Payloader(@ Php 2, 500.00/unit)"; }).GetHtml()</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m=>m.PayloaderOld,settings =>
+                                            {
+                                                settings.Name = "PayloaderOld";
+                                                settings.Properties.NullText = "Old(1)";
+                                                settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                            }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.PayloaderNew, settings =>
+                                       {
+                                           settings.Name = "PayloaderNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings => { settings.Text = "2. Backhoe(@ Php 2, 500.00/unit)"; }).GetHtml()</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.BackHoeOld, settings =>
+                                       {
+                                           settings.Name = "BackhoeOld";
+                                           settings.Properties.NullText = "Old(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.BackHoeNew, settings =>
+                                       {
+                                           settings.Name = "BackhoeNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings => { settings.Text = "3. Hauling Trucks(14cu. m & Above @Php 2, 000.00/unit)"; }).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksFourteenOld, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksFourteenOld";
+                                           settings.Properties.NullText = "Old(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksFourteenNew, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksFourteenNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings =>
+{
+settings.Text = "4. Hauling Trucks(10cu. m & 14cu. m @Php 1, 500.00/unit)";
+}).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksTenOld, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksTenOld";
+                                           settings.Properties.NullText = "Old(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksTenNew, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksTenNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings =>
+{
+settings.Text = "5. Hauling Trucks(less than 6 cu. m-10 cu. m@Php 1, 000.00/unit)";
+}).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksSixnOld, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksSixnOld";
+                                           settings.Properties.NullText = "Old(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksTenNew, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksSixNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings =>
+{
+settings.Text = "6. Hauling Trucks(less than 6 cu. m@Php 700.00/unit)";
+}).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksLessSixnOld, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksLessSixnOld";
+                                           settings.Properties.NullText = "Old(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.HaulingTrucksLessSixNew, settings =>
+                                       {
+                                           settings.Name = "HaulingTrucksLessSixNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings =>
+{
+settings.Text = "7. Cement Plants, Pulverizing Plants, Crushing Plants, Batch Plants and SImilar Plants(@Php 2, 000.00/unit)";
+}).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.PlantsOld, settings =>{
+                                           settings.Name = "PlantsOld";
+                                           settings.Properties.NullText = "Old(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.PlantsNew, settings =>
+                                       {
+                                           settings.Name = "PlantsNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings =>
+{
+settings.Text = "8. Potteries and Cement Products production/processing (@ Php 750.00 plant)";
+}).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.PotteriesandCementOld, settings =>
+                                       {
+                                           settings.Name = "PotteriesandCementOld";
+                                           settings.Properties.NullText = "Old(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBoxFor(m => m.PotteriesandCementNew, settings =>
+                                       {
+                                           settings.Name = "PotteriesandCementNew";
+                                           settings.Properties.NullText = "New(1)";
+                                           settings.Properties.ClientSideEvents.KeyUp = "function(s,e){computeStickerUnit()}";
+                                       }).GetHtml()
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    @Html.DevExpress().Label(settings =>
+                                    {
+                                        settings.Text = "d. Surcharge(25%)";
+                                    }).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBox(settings =>
+                                            {
+                                                settings.Name = "Surcharge";
+                                            }).GetHtml()
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    @Html.DevExpress().Label(settings =>
+                                    {
+                                        settings.Text = "e. Interest(2%)";
+                                    }).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBox(settings =>
+                                            {
+                                                settings.Name = "Interest";
+                                            }).GetHtml()
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    @Html.DevExpress().Label(settings =>
+                                    {
+                                        settings.Text = "f. Penalty";
+                                    }).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBox(settings =>
+                                            {
+                                                settings.Name = "Penalty";
+                                            }).GetHtml()
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    @Html.DevExpress().Label(settings =>
+                                    {
+                                        settings.Text = "g. Tax on Excess SAG Volume";
+                                    }).GetHtml()
+                                </td>
+
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings =>
+{
+settings.Text = "1. Delivery Receipt(@2.10/pc)";
+}).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBox(settings =>
+                                            {
+                                                settings.Name = "DeliveryReceipt";
+                                                settings.Properties.NullText = "50(pcs)";
+                                            }).GetHtml()
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td width="30%">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;@Html.DevExpress().Label(settings =>
+{
+settings.Text = "2. Transport Slip(@ Php 1.995/unit)";
+}).GetHtml()
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            @Html.DevExpress().TextBox(settings =>
+                                            {
+                                                settings.Name = "TransportSlip";
+                                                settings.Properties.NullText = "50(pcs)";
+                                            }).GetHtml()
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row margin-top-10">
+                <div class="col-lg-12">
+                    @Html.DevExpress().Button(settings =>
+                    {
+                        settings.Name = "btnSubmit";
+                        settings.UseSubmitBehavior = true;
+                        settings.Text = "Submit";
+                    }).GetHtml()
+                    @Html.DevExpress().Button(settings =>
+                    {
+                        settings.Name = "btnCancel";
+                        settings.Text = "Cancel";
+                        settings.ClientSideEvents.Click = "function(s,e){cancelTransaction()}";
+                    }).GetHtml()
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

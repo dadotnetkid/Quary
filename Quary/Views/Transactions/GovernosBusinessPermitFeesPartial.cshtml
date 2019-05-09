@@ -1,0 +1,54 @@
+﻿@model Transactions
+
+
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Governor's Business Permit Fees
+            </a>
+        </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <table width="100%" class="c-tables">
+                        <tbody>
+                        <tr>
+                            <td width="30%">@Html.DevExpress().Label(settings => { settings.Text = "a. Filing/ Application Fee"; }).GetHtml()</td>
+                            <td>
+                                @Html.DevExpress().TextBoxFor(m=>m.FilingFee,settings =>
+                                {
+                                    settings.Properties.NullText = "Filing Fee";
+                                }).GetHtml()
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="">@Html.DevExpress().Label(settings => { settings.Text = "b. UP Research Foundation Fund(PD 1856)"; }).GetHtml()</td>
+                            <td>
+                                @Html.DevExpress().TextBoxFor(m=>m.FoundationFund,settings =>
+                                {
+                                    settings.Properties.NullText = "Foundation Fund";
+                                }).GetHtml()
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >@Html.DevExpress().Label(settings => { settings.Text = "c. Processing/ Verification/ Inspection Fee Communal/site"; }).GetHtml()</td>
+                            <td>
+                                @Html.DevExpress().TextBoxFor(m=>m.CommunalSite,settings =>
+                                {
+                                    settings.Properties.NullText = "Communal Site";
+                                }).GetHtml()
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

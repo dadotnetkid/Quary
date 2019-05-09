@@ -1,0 +1,16 @@
+
+
+
+@{
+    Html.DevExpress().ComboBox(settings =>
+    {
+        settings.Name = "PermitteeId";
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+        settings.CallbackRouteValues = new {Controller = "Transactions", Action = "cboPermitteePartial"};
+        settings.Properties.CallbackPageSize = 50;
+        settings.Properties.ValueField = "Id";
+        settings.Properties.TextField = "Name";
+        settings.Properties.ClientSideEvents.ValueChanged = "function(s,e){selectedPermittee(s,e)}";
+    }).BindList(Model).GetHtml();
+}

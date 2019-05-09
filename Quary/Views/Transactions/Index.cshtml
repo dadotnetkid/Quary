@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Html.Action("cboPermitteePartial")
+
+<div id="container">
+   
+    @Html.Action("TransactionPartial")
+
+
+
+</div>
+<div id="error-container" class="margin-top-10"></div>
+
+
+<script>
+
+
+    function selectedPermittee(s, e) {
+        showLoading();
+        $.ajax({
+            url: "@Url.Action("TransactionPartial")",
+            data: {
+                id: s.GetValue()
+            },
+            success: function(obj) {
+                $('#container').html(obj);
+                hideLoading();
+            }
+        });
+    }
+
+    function registerPermittee(actionName) {
+        showLoading();
+        $.ajax({
+            url: "@Url.Action("PermitteePartial")",
+            data: { actionName: actionName },
+            success: function(obj) {
+                $('#container').html(obj);
+                hideLoading();
+            }
+        });
+    }
+
+    function renewPermittee(actionName, permitteeId) {
+        showLoading();
+        $.ajax({
+            url: "@Url.Action("PermitteePartial")",
+            data: { actionName: actionName, permitteeId: permitteeId },
+            success: function(obj) {
+                $('#container').html(obj);
+                hideLoading();
+            }
+        });
+    }
+    function cancelTransaction() {
+        showLoading();
+        $.ajax({
+            url: "@Url.Action("TransactionPartial")",
+            data: { id: PermitteeId.GetValue() },
+            success: function(e) {
+                hideLoading();
+                $('#container').html(e);
+            }
+
+        });
+
+    }
+
+    function addSAGAdvancePayment() {
+        showLoading();
+        $.ajax({
+            url: "@Url.Action("SAGAdvancePaymentPartial")",
+            data: { permitteeId: PermitteeId.GetValue() },
+            success: function(e) {
+                hideLoading();
+                $('#container').html(e);
+            },
+            error: function (request, status, error) {
+                showError(error);
+            }
+
+        });
+    }
+
+    function viewTransaction() {
+        showLoading();
+        $.ajax({
+            url: "@Url.Action("TransactionGridViewPartial")",
+            data: { permitteeId: PermitteeId.GetValue() },
+            success: function (e) {
+                hideLoading();
+                $('#container').html(e);
+            }
+
+        });
+        
+    }
+  
+</script>

@@ -1,0 +1,85 @@
+﻿
+@model Vehicles
+<div class="row">
+    <div class="col-md-3 col-lg-3">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.VehicleName, settings =>
+            {
+                settings.Properties.NullText = "Vehicle Name";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.Caption = "Vehicle Name";
+                settings.ShowModelErrors = true;
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+            }).GetHtml();
+        }
+    </div>
+    <div class="col-md-3 col-lg-3">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.PlateNo, settings =>
+            {
+                settings.Properties.NullText = "Plate No";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.Caption = "Plate No";
+                settings.ShowModelErrors = true;
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+            }).GetHtml();
+        }
+    </div>
+    <div class="col-md-3 col-lg-3">
+        @{
+            Html.DevExpress().ComboBoxFor(m => m.VehicleTypeId, settings =>
+            {
+                settings.Properties.NullText = "Vehicle Type";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.Caption = "Vehicle Type";
+                settings.ShowModelErrors = true;
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.TextField = "VehicleTypeName";
+                settings.Properties.ValueField= "Id";
+            }).BindList(new UnitOfWork().VehicleTypesRepo.Get()).GetHtml();
+        }
+    </div>
+    <div class="col-md-3 col-lg-3">
+        @{
+            Html.DevExpress().ComboBoxFor(m => m.PermiteeId, settings =>
+            {
+                settings.Properties.NullText = "Permitee";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.Caption = "Permitee";
+                settings.ShowModelErrors = true;
+                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.TextField = "FullName";
+                settings.Properties.ValueField= "Id";
+            }).BindList(new UnitOfWork().PermiteesRepo.Get()).GetHtml();
+        }
+    </div>
+</div>
+
+<div class="row margin-top-10">
+    <div class="col-lg-12 col-md-12 ">
+        @{
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnSubmit";
+                settings.Text = "Submit";
+                settings.ClientSideEvents.Click = "function(s,e){VehiclesGridView.UpdateEdit()}";
+            }).GetHtml();
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnCancel";
+                settings.Text = "Cancel";
+                settings.ControlStyle.CssClass = "margin-left-10";
+                settings.ClientSideEvents.Click = "function(s,e){VehiclesGridView.CancelEdit()}";
+            }).GetHtml();
+        }
+    </div>
+</div>
+

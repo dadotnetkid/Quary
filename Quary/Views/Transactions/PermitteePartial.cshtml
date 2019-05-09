@@ -1,0 +1,23 @@
+﻿@model Permittees
+
+
+    @using (Ajax.BeginForm(new AjaxOptions()
+    {
+        Url = Url.Action(ViewBag.actionName, new { permitteeId = Model?.Id }),
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "container"
+    }))
+    {
+        <div class="row margin-top-10">
+            <div class="col-lg-12">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    @Html.Action("PermitteeInformationPartial", new { permitteeId = Model?.Id })
+                    @Html.Partial("GovernosBusinessPermitFeesPartial", Model?.Transactions.OrderByDescending(m=>m.Id).FirstOrDefault())
+                    @Html.Partial("GovernorsAccreditationFees", Model?.Transactions.OrderByDescending(m => m.Id).FirstOrDefault())
+
+
+                </div>
+            </div>
+        </div>
+    }
