@@ -72,3 +72,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .ui-effects-wrapper {
     display:inline;
 }
+.dxeCLLSys label {
+    min-width: 140px;
+    text-align: right;
+
+}
+.text-left {
+    text-align: left !important;
+}
+
+
+.file-manager .col-md-12 {
+    width: 33.33% !important;
+}

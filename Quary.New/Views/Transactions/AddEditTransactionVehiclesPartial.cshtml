@@ -1,0 +1,67 @@
+﻿
+@model TransactionVehicles
+
+@{
+    int? permiteeId = ViewBag.PermiteeId;
+    Vehicles vehicles = ViewBag.Vehicle as Vehicles;
+}
+<input type="hidden" name="TransactionId" value="@ViewBag.TransactionId" />
+
+
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().ComboBoxFor(m => m.VehicleId, settings =>
+            {
+                settings.Properties.TextField = "VehicleTypes.VehicleTypeName";
+                settings.Properties.ValueField = "Id";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.Caption = "Vehicle";
+                settings.Properties.ClientSideEvents.TextChanged = "function(s,e){VehicleGridView.PerformCallback({PermiteeId:'" + permiteeId + "',TransactionId:'" + ViewBag.TransactionId + "',VehicleId:s.GetValue()})}";
+            }).BindList(new UnitOfWork().VehiclesRepo.Get(m => m.PermiteeId == permiteeId)).Bind(vehicles?.Id??Model?.VehicleId).GetHtml();
+        }
+    </div>
+</div>
+<div class="row ">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.Cost, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.Caption = "Cost";
+                settings.Properties.DisplayFormatString = "N2";
+            }).Bind(vehicles?.VehicleTypes?.Cost??Model?.Cost).GetHtml();
+        }
+    </div>
+</div>
+<div class="row ">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().CheckBoxFor(m => m.isRenew, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.Caption = "is Renew";
+            }).GetHtml();
+        }
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-12">
+
+        @{
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnSubmitVehicleTransaction";
+                settings.Text = "Submit";
+                settings.ClientSideEvents.Click = "function(s,e){VehicleGridView.UpdateEdit()}";
+            }).GetHtml();
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnCancelVehicleTransaction";
+                settings.Text = "Cancel";
+                settings.ClientSideEvents.Click = "function(s,e){VehicleGridView.CancelEdit()}";
+            }).GetHtml();
+        }
+
+    </div>
+</div>

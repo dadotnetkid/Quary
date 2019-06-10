@@ -19,8 +19,8 @@
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
-        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
         settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
@@ -30,15 +30,24 @@
         settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 300;
 
         settings.Columns.Add("ItemName");
-        settings.Columns.Add("UnitCost");
-        settings.Columns.Add("UniMeasure");
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "UnitCost";
+            col.ColumnType = MVCxGridViewColumnType.TextBox;
+            col.PropertiesEdit.DisplayFormatString = "N2";
+        });
+        settings.Columns.Add(col =>
+        {
+
+            col.FieldName = "UnitMeasure";
+        });
         settings.SetEditFormTemplateContent(col =>
         {
             if (ViewData["Model"] != null)
             {
                 Html.RenderPartial("AddEditTransactionItemPartial", ViewData["Model"]);
             }
-            
+
             else
                 Html.RenderAction("AddEditTransactionItemPartial", new { itemId = col.KeyValue });
         });

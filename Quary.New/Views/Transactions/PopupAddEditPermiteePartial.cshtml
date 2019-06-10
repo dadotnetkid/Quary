@@ -1,0 +1,16 @@
+﻿@{
+    Html.DevExpress().PopupControl(settings =>
+    {
+        settings.Name = "popupAddEditPermitee";
+        settings.HeaderText = "Add Edit Permitee";
+        settings.ShowHeader = true;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.Width = 450;
+        settings.CallbackRouteValues = Url.Action("Popupaddeditpermiteepartial");
+
+        settings.SetContent(() =>
+        {
+            Html.RenderAction("PermiteeGridviewPartial", "Filemanagement");
+        });
+    }).GetHtml();
+}

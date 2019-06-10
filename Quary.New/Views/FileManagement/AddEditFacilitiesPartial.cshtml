@@ -6,11 +6,27 @@
             {
                 settings.Properties.NullText = "Facility Name";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
                 settings.Properties.Caption = "Facility Name";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
+            }).GetHtml();
+        }
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-4 col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.Cost, settings =>
+            {
+                settings.Properties.NullText = "Unit Cost";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+                settings.Properties.Caption = "Unit Cost";
+                settings.Properties.DisplayFormatString = "N2";
+                settings.ShowModelErrors = true;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>

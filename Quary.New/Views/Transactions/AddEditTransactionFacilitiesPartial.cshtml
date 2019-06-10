@@ -1,0 +1,68 @@
+﻿
+
+@model TransactionFacilities
+
+@{
+    int? permiteeId = ViewBag.PermiteeId;
+    Facilities facilities = ViewBag.facility as Facilities;
+}
+<input type="hidden" name="TransactionId" value="@ViewBag.TransactionId" />
+<input type="hidden" name="permiteeId" value="@ViewBag.PermiteeId" />
+
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().ComboBoxFor(m => m.FacilitiesId, settings =>
+            {
+                settings.Properties.TextField = "FacilityName";
+                settings.Properties.ValueField = "Id";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.Caption = "Facilities";
+                settings.Properties.ClientSideEvents.ValueChanged = "function(s,e){FacilitiesGridView.PerformCallback({TransactionId:'"+ViewBag.TransactionId + "',FacilitiesId:s.GetValue(),permiteeId:'"+ViewBag.PermiteeId+"'})}";
+            }).BindList(ViewBag.Facilities).Bind(facilities?.Id??Model?.FacilitiesId).GetHtml();
+        }
+    </div>
+</div>
+<div class="row ">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.Cost, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.Caption = "Cost";
+                settings.Properties.DisplayFormatString = "N2";
+            }).Bind(facilities?.Cost??Model?.Cost).GetHtml();
+        }
+    </div>
+</div>
+<div class="row ">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().CheckBoxFor(m => m.isRenew, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.Caption = "is Renew";
+            }).GetHtml();
+        }
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-12">
+
+        @{
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnSubmitFacilitiesTransaction";
+                settings.Text = "Submit";
+                settings.ClientSideEvents.Click = "function(s,e){FacilitiesGridView.UpdateEdit()}";
+            }).GetHtml();
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnCancelFacilitiesTransaction";
+                settings.Text = "Cancel";
+                settings.ClientSideEvents.Click = "function(s,e){FacilitiesGridView.CancelEdit()}";
+            }).GetHtml();
+        }
+
+    </div>
+</div>

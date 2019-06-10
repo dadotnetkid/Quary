@@ -1,0 +1,55 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "TransactionDetailsGridView";
+        settings.Width = Unit.Percentage(100);
+        settings.CallbackRouteValues = new { Controller = "Transactions", Action = "TransactionDetailsGridViewPartial", TransactionId = ViewBag.TransactionId };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Transactions", Action = "TransactionDetailsGridViewPartialAddNew", TransactionId = ViewBag.TransactionId };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Transactions", Action = "TransactionDetailsGridViewPartialUpdate", TransactionId = ViewBag.TransactionId };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Transactions", Action = "TransactionDetailsGridViewPartialDelete", TransactionId = ViewBag.TransactionId };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 300;
+        settings.Columns.Add("Items.ItemName");
+        settings.Columns.Add("Quantity");
+        settings.Columns.Add(col =>
+        {
+            col.ColumnType = MVCxGridViewColumnType.TextBox;
+            col.PropertiesEdit.DisplayFormatString = "N2";
+            col.FieldName = "UnitCost";
+        });
+        settings.Columns.Add(col =>
+        {
+            col.ColumnType = MVCxGridViewColumnType.TextBox;
+            col.PropertiesEdit.DisplayFormatString = "N2";
+            col.FieldName = "TotalCost";
+        });
+        settings.SetEditFormTemplateContent(col =>
+        {
+            Html.RenderAction("AddEditTransactionDetailsPartial", new { transactionId = ViewBag.TransactionId, transactionDetailId = col.KeyValue });
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

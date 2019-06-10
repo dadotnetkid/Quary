@@ -19,7 +19,7 @@
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
@@ -30,6 +30,12 @@
         settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 300;
 
         settings.Columns.Add("FacilityName");
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "Cost";
+            col.ColumnType = MVCxGridViewColumnType.TextBox;
+            col.PropertiesEdit.DisplayFormatString = "N2";
+        });
         settings.SetEditFormTemplateContent(col =>
         {
             if (ViewData["EditError"] != null && ViewData["Model"] != null)

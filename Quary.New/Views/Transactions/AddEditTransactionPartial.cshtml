@@ -1,0 +1,85 @@
+﻿@model Transactions
+@{
+  var  transactionId = ViewBag.TransactionId;
+  var  permiteeId = ViewBag.PermiteeId;
+
+}
+<input type="hidden" value="@ViewBag.TransactionId" name="transactionId" />
+<input type="hidden" value="@permiteeId" name="Id" />
+<div class="row">
+    <div class="col-lg-6">
+        @Html.DevExpress().ComboBoxFor(m => m.PermiteeId, settings =>
+   {
+       var btn = new EditButton("New");
+       settings.Width = Unit.Percentage(100);
+       settings.Properties.Caption = "Permitee";
+       settings.Properties.TextField = "FullName";
+       settings.Properties.ValueField = "Id";
+       settings.Properties.Buttons.Add(btn);
+       settings.Properties.ClientSideEvents.ButtonClick = "function(s,e){if(e.buttonIndex==0){popupAddEditPermitee.Show();popupAddEditPermitee.PerformCallback();}}";
+       settings.Properties.ClientSideEvents.ValueChanged = "function(s,e){TransactionsGridView.PerformCallback({permiteeId:s.GetValue(),transactionId:'" + ViewBag.TransactionId + "'})}";
+       //settings.Properties.ClientSideEvents.ValueChanged = "function(s, e){ postTransaction({ permiteeId: s.GetValue().toString(),transactionId: '" + ViewBag.TransactionId + "'})}";
+   }).BindList(new UnitOfWork().PermiteesRepo.Get()).Bind(permiteeId).GetHtml()
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-4">
+        <table class="dxeRoot_Material">
+            <tbody>
+            <tr>
+                <td class="dxeCaptionHALSys dxeCaptionVATSys dxeTextEditCTypeSys dxeCLLSys dxeCaptionCell_Material">
+                    <label class="dxeCaption_Material" >Quaries:</label>
+                </td>
+                <td class="dxeCaptionHALSys dxeCaptionVATSys dxeTextEditCTypeSys dxeCLLSys dxeCaptionCell_Material ">
+                    <label class="text-left">@ViewBag.Quaries</label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-12">
+        <h3>Transaction Details</h3>
+        @Html.Action("TransactionDetailsGridViewPartial", new { transactionId =transactionId })
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-12">
+        <h3>Vehicles</h3>
+
+        @Html.Action("VehicleGridViewPartial", new { transactionId = transactionId })
+
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-12">
+        <h3>Facilities</h3>
+        @Html.Action("FacilitiesGridViewPartial", new { transactionId = transactionId })
+
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-12">
+        <div class="pull-right">
+            @{
+                Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnSubmitTransaction";
+                    settings.Text = "Submit";
+                    settings.ClientSideEvents.Click = "function(s,e){TransactionsGridView.UpdateEdit()}";
+                }).GetHtml();
+                Html.DevExpress().Button(settings =>
+                {
+                    settings.Name = "btnCancelTransaction";
+                    settings.Text = "Cancel";
+                    settings.ClientSideEvents.Click = "function(s,e){TransactionsGridView.CancelEdit()}";
+                }).GetHtml();
+            }
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -6,15 +6,29 @@
             {
                 settings.Properties.NullText = "Vehicle Type Name";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
                 settings.Properties.Caption = "Vehicle Type Name";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>
-
+    
+</div>
+<div class="row">
+    <div class="col-md-4 col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.Cost, settings =>
+            {
+                settings.Properties.NullText = "Cost";
+                settings.Width = Unit.Percentage(100);
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+                settings.Properties.Caption = "Cost";
+                settings.ShowModelErrors = true;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
+            }).GetHtml();
+        }
+    </div>
 </div>
 <div class="row margin-top-10">
     <div class="col-lg-12 col-md-12 ">

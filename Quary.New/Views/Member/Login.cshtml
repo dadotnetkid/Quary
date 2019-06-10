@@ -8,9 +8,9 @@
 }
 
 
-@using (Html.BeginForm("login","member",new{returnUrl=ViewBag.ReturnUrl},FormMethod.Post,new {}))
+@using (Html.BeginForm("login", "member", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { }))
 {
-  @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
     <div class="form-group has-feedback form-group-left">
         @{
@@ -48,10 +48,10 @@
     <div class="row">
         <div class="col-xs-12">
             @{
-                Html.DevExpress().CheckBoxFor(m=>m.RememberMe, settings =>
-                {
-                    settings.Text = "Remember me?";
-                }).GetHtml();
+                Html.DevExpress().CheckBoxFor(m => m.RememberMe, settings =>
+                  {
+                      settings.Text = "Remember me?";
+                  }).GetHtml();
             }
 
         </div>
@@ -83,17 +83,23 @@
 
 
 @*<div class="social-auth-links text-center">
-    <p>- OR -</p>
-    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
-        <i class="fa fa-facebook"></i> Sign in using
-        Facebook
-    </a>
-    <a href="#" class="btn btn-block btn-social btn-google btn-flat">
-        <i class="fa fa-google-plus"></i> Sign in using
-        Google+
-    </a>
-</div>*@
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+            <i class="fa fa-facebook"></i> Sign in using
+            Facebook
+        </a>
+        <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+            <i class="fa fa-google-plus"></i> Sign in using
+            Google+
+        </a>
+    </div>*@
 <!-- /.social-auth-links -->
 
-<a href="#">I forgot my password</a><br>
-<a href="@Url.Action("register")" class="text-center">Register a new membership</a>
+<a href="#" onclick="forgotShow()">I forgot my password</a><br>
+@*<a href="@Url.Action("register")" class="text-center">Register a new membership</a>*@
+
+
+@Html.Action("ForgotPopupControlPartial")
+<script>
+    function forgotShow() { ForgotPopupControl.Show() }
+</script>

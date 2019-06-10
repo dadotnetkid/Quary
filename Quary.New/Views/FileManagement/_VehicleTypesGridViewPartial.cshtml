@@ -19,7 +19,7 @@
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
@@ -30,9 +30,15 @@
         settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 300;
 
         settings.Columns.Add("VehicleTypeName");
+        settings.Columns.Add(col =>
+        {
+            col.ColumnType = MVCxGridViewColumnType.TextBox;
+            col.FieldName = "Cost";
+            col.PropertiesEdit.DisplayFormatString = "N2";
+        });
         settings.SetEditFormTemplateContent(col =>
         {
-
+            Html.RenderAction("AddEditVehicleTypePartial",new{ vehicleTypeId = col.KeyValue});
         });
 
     });

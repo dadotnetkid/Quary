@@ -1,8 +1,25 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transactions";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 @Html.Action("TransactionsGridViewPartial")
+
+
+@Html.Action("PopupAddEditPermiteePartial")
+
+<script>
+    function postTransaction(permiteeId, transactionId) {
+        $.ajax({
+            url: "@Url.Action("AddEditTransactionPartial")" + "?permiteeId=" + permiteeId + "&transactionId=" + transactionId,
+            type:'POST',
+            success: function (e) {
+                $('#transation-container').html(e);
+            }
+
+
+        });
+    }
+</script>

@@ -1,30 +1,28 @@
 ﻿@model Quarries
 <div class="row">
-    <div class="col-md-4 col-lg-4">
+    <div class="col-md-12 col-lg-4">
         @{
             Html.DevExpress().TextBoxFor(m => m.QuarryName, settings =>
             {
                 settings.Properties.NullText = "Quarry Name";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
                 settings.Properties.Caption = "Quarry Name";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>
+</div> 
+<div class=" row ">
     <div class="col-md-4 col-lg-4">
         @{
             Html.DevExpress().TextBoxFor(m => m.JurisdictionName, settings =>
             {
                 settings.Properties.NullText = "Jurisdiction Name";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
                 settings.Properties.Caption = "Jurisdiction Name";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>

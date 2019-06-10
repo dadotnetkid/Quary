@@ -18,7 +18,7 @@
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
@@ -27,13 +27,14 @@
         settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
         settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
         settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
-        settings.Columns.Add("FullName");
+        settings.Columns.Add("FullName").Caption="Permitee";
         settings.Columns.Add("CompanyName");
         settings.Columns.Add("_QuarySites").Caption="Quary Sites";
         settings.Columns.Add("AddressLine1");
         settings.Columns.Add("AddressLine2");
         settings.SetEditFormTemplateContent(col =>
         {
+
             if (ViewData["EditError"] != null && ViewData["Model"]!=null)
             {
                 Html.RenderPartial("AddEditPermiteePartial", ViewData["Model"]);
@@ -42,6 +43,8 @@
             {
                 Html.RenderAction("AddEditPermiteePartial", new {permiteeId = col.KeyValue});
             }
+          
+
         });
     });
     if (ViewData["EditError"] != null)

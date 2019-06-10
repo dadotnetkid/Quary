@@ -19,8 +19,8 @@
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
-        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
         settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
@@ -28,10 +28,33 @@
         settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
         settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
         settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
-        settings.Columns.Add("Permitees.FullName");
+        settings.Columns.Add("Permitees.FullName").Caption = "Permitee";
         settings.Columns.Add("Permitees.PermiteeTypes.PermiteeTypeName");
         settings.Columns.Add("TransactionDate");
-        settings.Columns.Add("TransactionTotal");
+
+        settings.Columns.Add(col =>
+        {
+            col.FieldName = "TransactionTotal";
+            col.ColumnType = MVCxGridViewColumnType.TextBox;
+            col.PropertiesEdit.DisplayFormatString = "N2";
+        });
+        settings.SetEditFormTemplateContent(col =>
+        {
+            /* if (ViewBag.TransactionId != null && ViewBag.PermiteeId != null)
+             {
+                 Html.RenderPartial("TransactionCallbackPanel");
+             }
+             else
+             {
+                 var permiteeId =  DataBinder.Eval(col.DataItem, "PermiteeId");
+                 var transactionId = col.KeyValue;
+                 Html.RenderAction("TransactionCallbackPanel", new { transactionId = col.KeyValue, permiteeId= permiteeId });
+             }*/
+            //@Html.RenderPartial("AddEditTransactionPartial", new { PermiteeId = ViewBag.PermiteeId, TransationId = ViewBag.TransactionId });
+            var permiteeId =  DataBinder.Eval(col.DataItem, "PermiteeId");
+            var transactionId = col.KeyValue;
+            Html.RenderAction("AddEditTransactionPartial", new { transactionId = ViewBag.TransactionId??col.KeyValue, permiteeId = permiteeId });
+        });
     });
     if (ViewData["EditError"] != null)
     {

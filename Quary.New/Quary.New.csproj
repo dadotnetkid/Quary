@@ -107,6 +107,7 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
@@ -175,9 +176,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ControllerActionHelper.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FileManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PermiteesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -309,6 +312,8 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <None Include="Properties\PublishProfiles\ftp-file-system.pubxml" />
+    <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Properties\PublishProfiles\quary-web-deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -393,10 +398,33 @@
     <Content Include="Views\FileManagement\_FacilitiesGridViewPartial.cshtml" />
     <Content Include="Views\FileManagement\AddEditFacilitiesPartial.cshtml" />
     <Content Include="Views\FileManagement\TokenBoxQuarriesInPermiteePartial.cshtml" />
+    <Content Include="Views\Transactions\AddEditTransactionPartial.cshtml" />
+    <Content Include="Views\Member\Users.cshtml" />
+    <Content Include="Views\Member\_UserGridViewPartial.cshtml" />
+    <Content Include="Views\Maintenance\Users.cshtml" />
+    <Content Include="Views\Maintenance\_UsersGridViewPartial.cshtml" />
+    <Content Include="Views\Maintenance\CboControllersPartial.cshtml" />
+    <Content Include="Views\Maintenance\Controllers.cshtml" />
+    <Content Include="Views\Maintenance\_ControllersGridView.cshtml" />
+    <Content Include="Views\Maintenance\AddEditControllersActionsPartial.cshtml" />
+    <Content Include="Views\Maintenance\CboActionsPartial.cshtml" />
+    <Content Include="Views\Maintenance\TokenBoxUsersPartials.cshtml" />
+    <Content Include="Views\Transactions\PopupAddEditPermiteePartial.cshtml" />
+    <Content Include="Views\Transactions\_TransactionDetailsGridViewPartial.cshtml" />
+    <Content Include="Views\Transactions\AddEditTransactionDetailsPartial.cshtml" />
+    <Content Include="Views\Transactions\_VehicleGridViewPartial.cshtml" />
+    <Content Include="Views\Transactions\AddEditTransactionVehiclesPartial.cshtml" />
+    <Content Include="Views\Transactions\TransactionCallbackPanel.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Transactions\_FacilitiesGridViewPartial.cshtml" />
+    <Content Include="Views\Transactions\AddEditTransactionFacilitiesPartial.cshtml" />
+    <Content Include="Views\Maintenance\AddEditUserPartial.cshtml" />
+    <Content Include="Views\Member\ForgotPopupControlPartial.cshtml" />
+    <Content Include="Views\Member\_ForgotPopupControlContentPartial.cshtml" />
+    <Content Include="Views\Member\ChangeForgotPasswordViewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,16 @@
+﻿@*@Html.DevExpress().CallbackPanel(settings =>
+{
+    settings.Name = "TransactionCallbackPanel";
+    settings.ClientSideEvents.Init = "function(s,e){TransactionCallbackPanel.PerformCallback()}";
+    settings.CallbackRouteValues = new {Controller="Transactions",Action= "transactionCallbackPanel", PermiteeId = ViewBag.PermiteeId, TransatioId = ViewBag.TransactionId };
+    settings.SetContent(() =>
+    {
+        Html.RenderAction("AddEditTransactionPartial", new {PermiteeId = ViewBag.PermiteeId, TransationId = ViewBag.TransactionId});
+    });
+
+
+}).GetHtml()*@
+
+<div id="container-transaction">
+    @Html.Action("AddEditTransactionPartial", new {PermiteeId = ViewBag.PermiteeId, TransationId = ViewBag.TransactionId});
+</div>

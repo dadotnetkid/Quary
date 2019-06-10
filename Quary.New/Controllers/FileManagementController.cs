@@ -7,9 +7,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Models;
 using Models.Repository;
-
+using Helpers;
 namespace Quary.New.Controllers
 {
+    [Authorize]
+    [RoutePrefix("file-management")]
     public class FileManagementController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
@@ -23,7 +25,7 @@ namespace Quary.New.Controllers
         {
             return View();
         }
-
+        [Route("permitees")]
         public ActionResult Permitees()
         {
             return View();
@@ -266,6 +268,7 @@ namespace Quary.New.Controllers
             {
                 try
                 {
+                    item.LastEditedBy = User.Identity.GetUserId();
                     unitOfWork.QuarriesRepo.Update(item);
                     unitOfWork.Save();
                 }
@@ -359,7 +362,16 @@ namespace Quary.New.Controllers
             {
                 try
                 {
+                    
                     unitOfWork.PermiteesRepo.Update(item);
+                    unitOfWork.Save();
+                    var permitees = unitOfWork.PermiteesRepo.Find(m => m.Id == item.Id,includeProperties:"Quarries");
+                    permitees.Quarries.Clear();
+                    foreach(var i in item.QuarrySites)
+                    {
+                        var id = Convert.ToInt32(i);
+                        permitees.Quarries.Add(unitOfWork.QuarriesRepo.Find(m => m.Id == id));
+                    }
                     unitOfWork.Save();
                 }
                 catch (Exception e)
@@ -372,7 +384,7 @@ namespace Quary.New.Controllers
                 ViewData["EditError"] = "Please, correct all errors.";
                 ViewData["Model"] = item;
             }
-            var model = unitOfWork.PermiteesRepo.Get();
+            var model = unitOfWork.PermiteesRepo.Get(includeProperties: "Quarries");
             return PartialView("_PermiteeGridViewPartial", model);
         }
         [HttpPost, ValidateInput(false)]
@@ -452,6 +464,7 @@ namespace Quary.New.Controllers
             {
                 try
                 {
+                   
                     unitOfWork.VehicleTypesRepo.Update(item);
                     unitOfWork.Save();
                 }
@@ -491,7 +504,7 @@ namespace Quary.New.Controllers
         public PartialViewResult AddEditVehicleTypePartial([ModelBinder(typeof(DevExpressEditorsBinder))]int? vehicleTypeId)
         {
             var model = unitOfWork.VehicleTypesRepo.Find(m => m.Id == vehicleTypeId);
-            return PartialView();
+            return PartialView(model);
         }
 
 

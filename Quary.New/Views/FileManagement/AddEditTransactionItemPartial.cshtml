@@ -1,44 +1,49 @@
 ﻿@model Items
 <div class="row">
-    <div class="col-md-4 col-lg-4">
+    <div class="col-md-6 col-lg-6">
         @{
             Html.DevExpress().TextBoxFor(m => m.ItemName, settings =>
             {
                 settings.Properties.NullText = "Item Name";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                
                 settings.Properties.Caption = "Item Name";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>
-    <div class="col-md-4 col-lg-4">
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-6">
         @{
             Html.DevExpress().TextBoxFor(m => m.UnitMeasure, settings =>
             {
                 settings.Properties.NullText = "Unit Measure";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+               
                 settings.Properties.Caption = "Unit Measure";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                //settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+                //settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>
-    <div class="col-md-4 col-lg-4">
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-6">
         @{
             Html.DevExpress().TextBoxFor(m => m.UnitCost, settings =>
             {
                 settings.Properties.NullText = "Unit Cost";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+               
                 settings.Properties.Caption = "Unit Cost";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.DisplayFormatString = "N2";
+                    
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>

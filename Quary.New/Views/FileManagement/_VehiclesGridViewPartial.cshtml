@@ -19,8 +19,8 @@
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
-        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
         settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
@@ -28,8 +28,8 @@
         settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
         settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
         settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 300;
-        settings.Columns.Add("Permitees.FullName");
-        settings.Columns.Add("VehicleName");
+        settings.Columns.Add("Permitees.FullName").Caption="Permitee";
+        settings.Columns.Add("VehicleTypes.VehicleTypeName");
         settings.Columns.Add("PlateNo");
         settings.SetEditFormTemplateContent(col =>
         {

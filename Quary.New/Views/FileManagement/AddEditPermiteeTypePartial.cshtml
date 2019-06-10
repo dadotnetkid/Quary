@@ -6,11 +6,10 @@
             {
                 settings.Properties.NullText = "Permitee Type Name";
                 settings.Width = Unit.Percentage(100);
-                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
                 settings.Properties.Caption = "Permitee Type Name";
                 settings.ShowModelErrors = true;
-                settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
-                settings.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                settings.Properties.ValidationSettings.Display = Display.Dynamic;
             }).GetHtml();
         }
     </div>
